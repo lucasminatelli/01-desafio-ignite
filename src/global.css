@@ -33,6 +33,8 @@ body {
 body,
 input,
 textarea,
+span,
+strong,
 button {
   font-family: "Inter", sans-serif;
   font-weight: 400;

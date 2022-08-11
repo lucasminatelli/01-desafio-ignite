@@ -1,3 +1,25 @@
-.content {
-    
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header strong {
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.header span {
+    color: var(--gray-200);
+    background: var(--gray-400);
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;    
+    font-weight: bold;
+}
+
+.tarefas_criadas {
+    color: var(--blue);
+}
+
+.tarefas_concluidas {
+    color: var(--purple);
 }
