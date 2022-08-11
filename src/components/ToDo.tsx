@@ -1,12 +1,16 @@
+import { PlusCircle } from "phosphor-react";
 import styles from "./ToDo.module.css";
 
 export function ToDo() {
   return (
     <div>
       <div>
-        <form>
+        <form className={styles.form}>
           <input placeholder="Adicione uma nova tarefa"></input>
-          <button>Criar</button>
+          <button type="submit">
+            <span>Criar</span>
+            <PlusCircle size={16} />
+          </button>
         </form>
       </div>
 
@@ -22,9 +26,7 @@ export function ToDo() {
           </div>
         </header>
 
-        <div>
-          content
-        </div>
+        <div>content</div>
       </div>
     </div>
   );
