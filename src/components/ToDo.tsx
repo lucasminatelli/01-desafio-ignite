@@ -66,6 +66,7 @@ export function ToDo() {
     setTasks(updatedTasks);
   }
 
+  const isNewTaskEmpty = !newTask?.trim();
   const tasksDone = handleCountTasksDone();
 
   return (
@@ -77,7 +78,7 @@ export function ToDo() {
             value={newTask}
             onChange={handleNewTask}
           />
-          <button type="submit">
+          <button type="submit" disabled={isNewTaskEmpty}>
             <span>Criar</span>
             <PlusCircle size={16} />
           </button>

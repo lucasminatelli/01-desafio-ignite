@@ -14,7 +14,7 @@
     color: var(--gray-300);
 }
 
-.form button {
+.form button[type="submit"] {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,9 +27,14 @@
     border-radius: 8px;
 }
 
-.form button span {
+.form button[type="submit"] span {
     font-size: 0.875rem;
     font-weight: bold;
+}
+
+.form button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .header {
