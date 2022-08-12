@@ -31,6 +31,11 @@ export function ToDo() {
     setNewTask("");
   }
 
+  function deleteTask(id: number) {
+    const tasksWithoutThisOne = tasks.filter(task => task.id !== id);
+    setTasks(tasksWithoutThisOne);
+  }
+
   return (
     <div>
       <div>
@@ -62,7 +67,13 @@ export function ToDo() {
         {tasks.length > 0 ? (
           <div className={styles.lista}>
             {tasks.map((task) => (
-              <Tarefa key={task.id} done={task.done} title={task.title} />
+              <Tarefa
+                key={task.id}
+                id={task.id}
+                done={task.done}
+                title={task.title}
+                onDeleteTask={deleteTask}
+              />
             ))}
           </div>
         ) : (
