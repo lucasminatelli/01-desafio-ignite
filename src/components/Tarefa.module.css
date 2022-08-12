@@ -33,6 +33,11 @@
     font-size: 0.875rem;
 }
 
+.tarefa input[type="checkbox"]:checked + p {
+    color: var(--gray-300);
+    text-decoration: line-through;
+}
+
 .tarefa svg {
     margin-left: 0.75rem;
     right: 0;
