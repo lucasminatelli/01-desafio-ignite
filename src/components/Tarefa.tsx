@@ -6,12 +6,13 @@ interface TarefaProps {
   done: boolean;
   title: string;
   onDeleteTask: (id: number) => void;
+  onCheckTask: (id: number) => void;
 }
 
-export function Tarefa({ id, done, title, onDeleteTask }: TarefaProps) {
+export function Tarefa({ id, done, title, onDeleteTask, onCheckTask }: TarefaProps) {
   return (
     <article className={styles.tarefa}>
-      <input type="checkbox" checked={done} />
+      <input type="checkbox" checked={done} onClick={() => onCheckTask(id)} />
       <p>{title}</p>
       <Trash size={16} onClick={() => onDeleteTask(id)} />
     </article>

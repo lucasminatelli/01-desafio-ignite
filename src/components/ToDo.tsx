@@ -11,8 +11,8 @@ interface Tasks {
 }
 
 export function ToDo() {
-  const [newTask, setNewTask] = React.useState<string>();
   const [tasks, setTasks] = React.useState<Tasks[]>([]);
+  const [newTask, setNewTask] = React.useState<string>();
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
     setNewTask(event?.target.value);
@@ -32,9 +32,41 @@ export function ToDo() {
   }
 
   function deleteTask(id: number) {
-    const tasksWithoutThisOne = tasks.filter(task => task.id !== id);
+    const tasksWithoutThisOne = tasks.filter((task) => task.id !== id);
     setTasks(tasksWithoutThisOne);
   }
+
+  function handleCountTasksDone() {
+    let count = 0;
+    tasks.forEach((task) => {
+      if (task.done === true) {
+        count++;
+      }
+    });
+    return count;
+  }
+
+  function handleUpdateTasks(id: number) {
+    const updatedTasks: Tasks[] = [];
+    tasks.forEach((task) => {
+      if(task.id === id){
+        updatedTasks.push({
+          id: task.id,
+          done: !task.done,
+          title: task.title
+        })
+      } else {
+        updatedTasks.push({
+          id: task.id,
+          done: task.done,
+          title: task.title
+        })
+      }
+    });
+    setTasks(updatedTasks);
+  }
+
+  const tasksDone = handleCountTasksDone();
 
   return (
     <div>
@@ -60,7 +92,11 @@ export function ToDo() {
           </div>
           <div>
             <strong className={styles.tarefas_concluidas}>Concluídas</strong>
-            <span>0</span>
+            {tasks.length > 0 ? (
+              <span>{`${tasksDone} de ${tasks.length}`}</span>
+            ) : (
+              <span>0</span>
+            )}
           </div>
         </header>
 
@@ -73,6 +109,7 @@ export function ToDo() {
                 done={task.done}
                 title={task.title}
                 onDeleteTask={deleteTask}
+                onCheckTask={handleUpdateTasks}
               />
             ))}
           </div>
