@@ -1,9 +1,24 @@
+import React from "react";
 import { PlusCircle } from "phosphor-react";
 import { Tarefa } from "./Tarefa";
 import styles from "./ToDo.module.css";
 import doc from "../assets/doc.svg";
 
+interface Tasks {
+  id: number;
+  done: boolean;
+  title: string;
+}
+
 export function ToDo() {
+  const [tasks, setTasks] = React.useState<Tasks[]>([
+    {
+      id: new Date().getTime(),
+      done: false,
+      title: "Primeira tarefa",
+    },
+  ]);
+
   return (
     <div>
       <div>
@@ -20,7 +35,7 @@ export function ToDo() {
         <header className={styles.header}>
           <div>
             <strong className={styles.tarefas_criadas}>Tarefas criadas</strong>
-            <span>0</span>
+            <span>{tasks.length}</span>
           </div>
           <div>
             <strong className={styles.tarefas_concluidas}>Concluídas</strong>
@@ -28,16 +43,19 @@ export function ToDo() {
           </div>
         </header>
 
-        <div className={styles.lista_vazia}>
-          <img src={doc} alt="" />
-          <strong>Você ainda não tem tarefas cadastradas</strong>
-          <span>Crie tarefas e organize seus itens a fazer</span>
-        </div>
-
-        <div className={styles.lista}>
-          <Tarefa />
-          <Tarefa />
-        </div>
+        {tasks.length > 0 ? (
+          <div className={styles.lista}>
+            {tasks.map((task) => (
+              <Tarefa key={task.id} done={task.done} title={task.title} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.lista_vazia}>
+            <img src={doc} alt="" />
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            <span>Crie tarefas e organize seus itens a fazer</span>
+          </div>
+        )}
       </div>
     </div>
   );
