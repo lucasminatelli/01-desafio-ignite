@@ -62,3 +62,21 @@
 .lista {
     margin-top: 1.5rem;
 }
+
+.lista_vazia {
+    margin-top: 4rem;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+}
+
+.lista_vazia img {
+    margin: auto;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.lista_vazia strong {
+    font-weight: bold;
+}
