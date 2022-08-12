@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import { PlusCircle } from "phosphor-react";
 import { Tarefa } from "./Tarefa";
 import styles from "./ToDo.module.css";
@@ -11,19 +11,35 @@ interface Tasks {
 }
 
 export function ToDo() {
-  const [tasks, setTasks] = React.useState<Tasks[]>([
-    {
-      id: new Date().getTime(),
-      done: false,
-      title: "Primeira tarefa",
-    },
-  ]);
+  const [newTask, setNewTask] = React.useState<string>();
+  const [tasks, setTasks] = React.useState<Tasks[]>([]);
+
+  function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
+    setNewTask(event?.target.value);
+  }
+
+  function handleCreateNewTask(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setTasks([
+      ...tasks,
+      {
+        id: new Date().getTime(),
+        done: false,
+        title: newTask ? newTask : "",
+      },
+    ]);
+    setNewTask("");
+  }
 
   return (
     <div>
       <div>
-        <form className={styles.form}>
-          <input placeholder="Adicione uma nova tarefa"></input>
+        <form onSubmit={handleCreateNewTask} className={styles.form}>
+          <input
+            placeholder="Adicione uma nova tarefa"
+            value={newTask}
+            onChange={handleNewTask}
+          />
           <button type="submit">
             <span>Criar</span>
             <PlusCircle size={16} />
