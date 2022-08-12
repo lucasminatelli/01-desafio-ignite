@@ -1,4 +1,5 @@
 import { PlusCircle } from "phosphor-react";
+import { Tarefa } from "./Tarefa";
 import styles from "./ToDo.module.css";
 
 export function ToDo() {
@@ -26,7 +27,10 @@ export function ToDo() {
           </div>
         </header>
 
-        <div>content</div>
+        <div className={styles.lista}>
+          <Tarefa />
+          <Tarefa />
+        </div>
       </div>
     </div>
   );

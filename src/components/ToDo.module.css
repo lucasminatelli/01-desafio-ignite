@@ -58,3 +58,7 @@
 .tarefas_concluidas {
     color: var(--purple);
 }
+
+.lista {
+    margin-top: 1.5rem;
+}
